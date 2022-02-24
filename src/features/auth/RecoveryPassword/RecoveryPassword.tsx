@@ -8,22 +8,22 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { useStyles } from 'features/auth/style';
 
 export const RecoveryPassword: FC = () => {
   const classes = useStyles();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<{ email: string }>();
 
-  const onSubmit = (data: any) => {
-    console.log(watch(data));
+  const onSubmit: SubmitHandler<{ email: string }> = data => {
+    console.log(data);
     console.log(errors.email);
   };
 

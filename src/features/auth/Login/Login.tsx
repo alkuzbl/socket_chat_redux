@@ -11,22 +11,25 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { RequestLoginType } from 'dal/types';
 import { useStyles } from 'features/auth/style';
+import { login } from 'redux/middleware/login';
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<RequestLoginType>();
 
-  const onSubmit = (data: any) => {
-    console.log(watch(data));
+  const onSubmit: SubmitHandler<RequestLoginType> = data => {
+    dispatch(login(data));
     console.log(errors.password);
   };
 
@@ -63,7 +66,7 @@ export const Login = () => {
           />
           <Box className={classes.checkbox}>
             <FormControlLabel
-              control={<Checkbox color="primary" {...register('rememberMe', {})} />}
+              control={<Checkbox color="primary" />}
               label="Remember me"
             />
           </Box>

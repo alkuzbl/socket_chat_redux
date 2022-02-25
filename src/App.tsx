@@ -8,14 +8,14 @@ import { authMe } from 'redux/middleware/authMe';
 import { RootState } from 'redux/store';
 
 const App: FC = () => {
-  const isInitialized = useSelector<RootState, boolean>(state => state.app.isInitialized);
+  const isAuth = useSelector<RootState, boolean>(state => state.app.isInitialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authMe());
   }, []);
 
-  const route = useRoute(isInitialized);
+  const route = useRoute(isAuth);
 
   return <div className="App">{route}</div>;
 };

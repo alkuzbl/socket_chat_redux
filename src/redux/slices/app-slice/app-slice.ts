@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { authMe } from 'redux/middleware/authMe';
-import { login } from 'redux/middleware/login';
 import { InitialStateForApp } from 'redux/slices/app-slice/types';
 
 const APP = 'app';
@@ -25,12 +24,8 @@ const slice = createSlice({
       state.status = 'succeed';
     });
     builder.addCase(authMe.rejected, state => {
-      state.isInitialized = false;
-      state.status = 'failed';
-    });
-    builder.addCase(login.fulfilled, state => {
       state.isInitialized = true;
-      state.status = 'succeed';
+      state.status = 'failed';
     });
   },
 });

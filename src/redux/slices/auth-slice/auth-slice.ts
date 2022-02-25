@@ -11,6 +11,7 @@ const initialStateForAuth: InitialStateForAuthType = {
   user: {} as UserType,
   message: undefined,
   error: undefined,
+  isAuth: false,
 };
 
 const slice = createSlice({
@@ -21,6 +22,7 @@ const slice = createSlice({
     builder.addCase(authMe.fulfilled, (state, action) => {
       state.user = action.payload.data;
       state.message = action.payload.message;
+      state.isAuth = true;
     });
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.message = action.payload;

@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import { Chat, Login, NotPage, RecoveryPassword, Registration } from 'features';
+import { Chat, Login, RecoveryPassword, Registration } from 'features';
 
 export const useRoute = (auth: boolean) => {
   if (!auth) {
@@ -18,7 +18,7 @@ export const useRoute = (auth: boolean) => {
     <Routes>
       <Route path="chat" element={<Chat />} />
       <Route path="/" element={<Navigate to="chat" />} />
-      <Route path="*" element={<NotPage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

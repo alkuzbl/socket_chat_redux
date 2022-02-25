@@ -10,4 +10,5 @@ export type InitialStateForAuthType = {
   user: UserType;
   message: string | undefined;
   error: string | undefined;
+  isAuth: boolean;
 };

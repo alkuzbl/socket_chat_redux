@@ -13,13 +13,13 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { RequestType } from 'dal/types';
-import { useStyles } from 'features/auth/style';
+import { useStylesAuth } from 'features/auth/style';
 import { signUp } from 'redux/middleware/sign-up';
 
 export const Registration: FC = () => {
   const dispatch = useDispatch();
 
-  const classes = useStyles();
+  const classes = useStylesAuth();
   const {
     register,
     handleSubmit,

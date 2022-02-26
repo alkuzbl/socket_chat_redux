@@ -16,12 +16,12 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { RequestLoginType } from 'dal/types';
-import { useStyles } from 'features/auth/style';
+import { useStylesAuth } from 'features/auth/style';
 import { login } from 'redux/middleware/login';
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const classes = useStyles();
+  const classes = useStylesAuth();
   const {
     register,
     handleSubmit,

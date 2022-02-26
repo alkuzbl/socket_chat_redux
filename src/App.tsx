@@ -8,7 +8,7 @@ import { authMe } from 'redux/middleware/authMe';
 import { RootState } from 'redux/store';
 
 const App: FC = () => {
-  const isAuth = useSelector<RootState, boolean>(state => state.app.isInitialized);
+  const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -11,10 +11,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useStyles } from 'features/auth/style';
+import { useStylesAuth } from 'features/auth/style';
 
 export const RecoveryPassword: FC = () => {
-  const classes = useStyles();
+  const classes = useStylesAuth();
 
   const {
     register,

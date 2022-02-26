@@ -6,94 +6,26 @@ import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { alpha, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
+import { useDispatch } from 'react-redux';
 
 import logo from 'assets/images/logo.png';
+import { useStylesHeader } from 'components/Header/style';
+import { logOut } from 'redux/middleware/logOut';
 import { Nullable } from 'types/nullabel';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    grow: {
-      flexGrow: 1,
-    },
-    header: {
-      backgroundColor: '#eb8578',
-    },
-    logoBox: {
-      width: '100px',
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex',
-      },
-    },
-    logo: {
-      width: '100px',
-    },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-      },
-    },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    inputRoot: {
-      color: 'inherit',
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
-      },
-    },
-    sectionDesktop: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex',
-      },
-    },
-    iconMessage: {
-      '& .MuiBadge-badge': {
-        backgroundColor: '#b93a3a',
-      },
-    },
-    sectionMobile: {
-      display: 'flex',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
-    },
-  }),
-);
+const menuId = 'primary-search-account-menu';
+const mobileMenuId = 'primary-search-account-menu-mobile';
 
 export const Header = () => {
-  const classes = useStyles();
+  const classes = useStylesHeader();
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState<Nullable<HTMLElement>>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<Nullable<HTMLElement>>(null);
@@ -118,7 +50,11 @@ export const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
+  const handleLogOut = () => {
+    handleMenuClose();
+    dispatch(logOut());
+  };
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -131,11 +67,10 @@ export const Header = () => {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogOut}>Logout</MenuItem>
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -179,7 +114,7 @@ export const Header = () => {
   return (
     <div className={classes.grow}>
       <AppBar className={classes.header} position="static">
-        <Toolbar>
+        <Toolbar className={classes.wrapper}>
           <div className={classes.logoBox}>
             <img className={classes.logo} src={logo} alt="logo" />
           </div>

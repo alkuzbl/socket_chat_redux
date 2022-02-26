@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { authMe } from 'redux/middleware/authMe';
 import { login } from 'redux/middleware/login';
+import { logOut } from 'redux/middleware/logOut';
 import { signUp } from 'redux/middleware/sign-up';
 import { InitialStateForAuthType, UserType } from 'redux/slices/auth-slice/types';
 
@@ -24,12 +25,23 @@ const slice = createSlice({
       state.message = action.payload.message;
       state.isAuth = true;
     });
+    builder.addCase(authMe.rejected, state => {
+      state.user = {} as UserType;
+      state.message = undefined;
+      state.isAuth = false;
+    });
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.message = action.payload;
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload.data;
       state.message = action.payload.message;
+      state.isAuth = true;
+    });
+    builder.addCase(logOut.fulfilled, (state, action) => {
+      state.user = {} as UserType;
+      state.message = action.payload.message;
+      state.isAuth = false;
     });
   },
 });

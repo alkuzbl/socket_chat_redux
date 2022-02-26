@@ -1,0 +1,17 @@
+.textarea {
+  display: flex;
+  justify-content: space-between;
+
+  &__input {
+    width: 100%;
+    resize: none;
+    margin-right: 5px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+}
+

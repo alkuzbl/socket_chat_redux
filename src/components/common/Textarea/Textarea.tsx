@@ -3,12 +3,8 @@ import { ChangeEvent, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@mui/icons-material/Send';
 
+import { styleForSendButton } from './style';
 import style from './style/Textarea.module.scss';
-
-const styleForSendButton = {
-  padding: '0 40px',
-  backgroundColor: '#eb8578',
-};
 
 export const Textarea = () => {
   const [value, setValue] = useState<string>('');

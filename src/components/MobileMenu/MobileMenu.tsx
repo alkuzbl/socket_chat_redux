@@ -8,15 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import { Nullable } from 'types/nullabel';
-
-type MobileMenuPropsType = {
-  isMobileMenuOpen: boolean;
-  anchorEl: Nullable<HTMLElement>;
-  onClickMobileMenuClose: () => void;
-  onClickProfileMenuOpen: (value: any) => void;
-  mobileMenuId: string;
-};
+import { MobileMenuPropsType } from './types';
 
 export const MobileMenu: FC<MobileMenuPropsType> = props => {
   const {
@@ -30,6 +22,7 @@ export const MobileMenu: FC<MobileMenuPropsType> = props => {
   const handleMobileMenuClose = () => {
     onClickMobileMenuClose();
   };
+
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     console.log(event.currentTarget);
     onClickProfileMenuOpen(event.currentTarget);

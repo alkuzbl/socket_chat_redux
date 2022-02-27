@@ -1,3 +1,78 @@
-.message{
+.message {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  &__wrapper{
+    display: flex;
+    max-width: 450px;
+    padding: 5px;
+  }
 
+  &__avatar {
+    margin-right: 10px;
+  }
+
+  &__content {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    margin-top: 30px;
+    text-align: left;
+    padding: 25px 5px 20px 10px;
+    position: relative;
+  }
+
+  &__userName {
+    position: absolute;
+    top: 3px;
+    left: 10px;
+    color: brown;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    font-size: 10px;
+    opacity: .7;
+  }
+  &__edit{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    img{
+      height: 14px;
+    }
+  }
+}
+
+.myMessage{
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+  &__avatar{
+    order: 1;
+    margin-left: 10px;
+  }
+  &__userName{
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    color: brown;
+  }
+  &__edit{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    img{
+      height: 14px;
+    }
+  }
 }

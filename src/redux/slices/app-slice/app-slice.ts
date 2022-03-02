@@ -9,12 +9,17 @@ const initialStateForApp: InitialStateForApp = {
   status: 'idle',
   error: undefined,
   isInitialized: false,
+  message: undefined,
 };
 
 const slice = createSlice({
   name: APP,
   initialState: initialStateForApp,
-  reducers: {},
+  reducers: {
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(authMe.pending, state => {
       state.status = 'loading';
@@ -31,3 +36,5 @@ const slice = createSlice({
 });
 
 export const appReducer = slice.reducer;
+
+export const { setMessage } = slice.actions;

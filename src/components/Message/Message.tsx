@@ -10,6 +10,7 @@ import iconMenu from 'assets/images/icon_menu_message.svg';
 
 export const Message: FC<MessagePropsType> = props => {
   const { id, message, userName, avatar, created, isMyMessage } = props;
+  const time = created.split('').splice(11, 5).join('');
 
   const handleClickMenuMessage = () => {
     console.log(
@@ -37,7 +38,7 @@ export const Message: FC<MessagePropsType> = props => {
             {userName}
           </span>
           {message}
-          <span className={style.message__time}>{created}</span>
+          <span className={style.message__time}>{time}</span>
           <span
             role="presentation"
             className={isMyMessage ? style.myMessage__edit : style.message__edit}

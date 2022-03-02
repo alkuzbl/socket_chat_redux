@@ -114,7 +114,7 @@ export const Header = () => {
   return (
     <div className={classes.grow}>
       <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.wrapper}>
+        <Toolbar className={classes.wrapper} style={{ padding: 0 }}>
           <div className={classes.logoBox}>
             <img className={classes.logo} src={logo} alt="logo" />
           </div>

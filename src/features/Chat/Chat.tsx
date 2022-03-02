@@ -1,25 +1,59 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './style/Chat.module.scss';
 
-import { Header } from 'components';
+import { Header, Notification } from 'components';
 import { MessageBox } from 'components/MessageBox/MessageBox';
+import { SocketApi } from 'dal/socket-api';
+import { setMessage } from 'redux/slices/app-slice/app-slice';
+import { RootState } from 'redux/store';
 
-export const Chat: FC = () => (
-  <section>
-    <Header />
+export const Chat: FC = () => {
+  const dispatch = useDispatch();
 
-    <h1>Chat page name</h1>
+  const getSocketData = (message: string) => {
+    dispatch(setMessage(message));
+  };
+  const message = useSelector<RootState, string | undefined>(state => state.app.message);
 
-    <div className="container">
-      <div className={style.chatPage}>
-        <div className={style.chatPage__info}>Здесь календарь и часы</div>
-        <div className={style.chatPage__messageBox}>
-          <MessageBox />
+  useEffect(() => {
+    const socket = new SocketApi();
+
+    socket.on(getSocketData);
+
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  const closeNotification = () => {
+    dispatch(setMessage(undefined));
+  };
+
+  return (
+    <section>
+      <Header />
+
+      <h1>Chat page name</h1>
+
+      <div className="container">
+        <div className={style.chatPage}>
+          <div className={style.chatPage__info}>Здесь календарь и часы</div>
+          <div className={style.chatPage__messageBox}>
+            <MessageBox />
+          </div>
+          <div className={style.chatPage__usersBox}>Здесь профили пользователей </div>
         </div>
-        <div className={style.chatPage__usersBox}>Здесь профили пользователей </div>
       </div>
-    </div>
-    <div />
-  </section>
-);
+      <div />
+      <Notification
+        open={!!message}
+        close={closeNotification}
+        message={message || ''}
+        delay={3000}
+      />
+    </section>
+  );
+};

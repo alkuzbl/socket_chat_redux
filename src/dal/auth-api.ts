@@ -4,7 +4,8 @@ import { RequestLoginType, RequestType, ResponseType } from 'dal/types';
 import { UserType } from 'redux/slices/auth-slice/types';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3009',
+  // baseURL: 'http://localhost:3009',
+  baseURL: 'https://back-social.herokuapp.com/',
   withCredentials: true,
 });
 

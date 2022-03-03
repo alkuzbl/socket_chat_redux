@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import ScrollableFeed from 'react-scrollable-feed';
 
 import style from './style/Messages.module.scss';
 
@@ -30,7 +31,7 @@ export const Messages = () => {
   }, []);
 
   return (
-    <div className={style.messages}>
+    <ScrollableFeed className={style.messages}>
       {messagesData.map(({ message, created, _id, user: { avatar, name, _id: id } }) => (
         <Message
           message={message}
@@ -42,6 +43,6 @@ export const Messages = () => {
           isMyMessage={id === userId}
         />
       ))}
-    </div>
+    </ScrollableFeed>
   );
 };

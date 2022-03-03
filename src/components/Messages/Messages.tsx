@@ -14,6 +14,7 @@ import { RootState } from 'redux/store';
 
 export const Messages = () => {
   const dispatch = useDispatch();
+
   const { _id: userId } = useSelector<RootState, UserType>(state => state.auth.user);
 
   const getMessage = (messages: { message: string; user: UserType }[]) =>

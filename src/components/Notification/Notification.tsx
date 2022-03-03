@@ -15,12 +15,10 @@ export const Notification: FC<NotificationPropsType> = props => {
   }, [open]);
 
   return (
-    <div>
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={open}
-        message={message}
-      />
-    </div>
+    <Snackbar
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      open={open}
+      message={message}
+    />
   );
 };

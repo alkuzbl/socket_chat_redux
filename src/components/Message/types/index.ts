@@ -5,4 +5,5 @@ export type MessagePropsType = {
   avatar: string;
   created: string;
   isMyMessage: boolean;
+  isActive: boolean;
 };

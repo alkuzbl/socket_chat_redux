@@ -4,6 +4,7 @@ export type UserType = {
   password: string;
   name: string;
   avatar?: string;
+  isActive: boolean;
 };
 
 export type InitialStateForAuthType = {

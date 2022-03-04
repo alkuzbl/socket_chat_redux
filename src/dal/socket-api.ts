@@ -17,7 +17,7 @@ export class SocketApi {
   // https://back-social.herokuapp.com
   // http://localhost:3009
   constructor() {
-    this.socket = openSocket('https://back-social.herokuapp.com', {
+    this.socket = openSocket('http://localhost:3009', {
       transports: ['websocket'],
       path: '/chat',
       withCredentials: true,

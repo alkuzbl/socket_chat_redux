@@ -9,12 +9,12 @@ import { MessagePropsType } from './types';
 import iconMenu from 'assets/images/icon_menu_message.svg';
 
 export const Message: FC<MessagePropsType> = props => {
-  const { id, message, userName, avatar, created, isMyMessage } = props;
+  const { id, message, userName, avatar, created, isMyMessage, isActive } = props;
   const time = created.split('').splice(11, 5).join('');
 
   const handleClickMenuMessage = () => {
     console.log(
-      `userName - ${userName}, id - ${id}, message - ${message}, avatar - ${avatar}`,
+      `userName - ${userName}, id - ${id}, message - ${message}, avatar - ${avatar}, isActive - ${isActive}`,
     );
   };
 
@@ -26,6 +26,7 @@ export const Message: FC<MessagePropsType> = props => {
             overlap="circular"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             variant="dot"
+            invisible={!isActive}
           >
             <Avatar alt={userName} src={avatar} />
           </StyledBadge>

@@ -32,17 +32,20 @@ export const Messages = () => {
 
   return (
     <ScrollableFeed className={style.messages}>
-      {messagesData.map(({ message, created, _id, user: { avatar, name, _id: id } }) => (
-        <Message
-          message={message}
-          userName={name}
-          id={_id}
-          avatar={avatar || defaultAvatar}
-          key={_id}
-          created={created}
-          isMyMessage={id === userId}
-        />
-      ))}
+      {messagesData.map(
+        ({ message, created, _id, user: { avatar, name, _id: id, isActive } }) => (
+          <Message
+            message={message}
+            userName={name}
+            id={_id}
+            avatar={avatar || defaultAvatar}
+            key={_id}
+            created={created}
+            isMyMessage={id === userId}
+            isActive={isActive}
+          />
+        ),
+      )}
     </ScrollableFeed>
   );
 };

@@ -6,3 +6,4 @@ export { Messages } from './Messages';
 export { MobileMenu } from './MobileMenu';
 export { Spinner } from './Spinner';
 export { Notification } from './Notification';
+export { Profile } from './Profie';

@@ -1,10 +1,12 @@
 import { FC, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import DatePicker from 'sassy-datepicker';
 
 import style from './style/Chat.module.scss';
 
-import { Header, Notification } from 'components';
+import iconUser from 'assets/images/icon_av_test_1.jpg';
+import { Header, Notification, Profile } from 'components';
 import { MessageBox } from 'components/MessageBox/MessageBox';
 import { SocketApi } from 'dal/socket-api';
 import { setMessage } from 'redux/slices/app-slice/app-slice';
@@ -12,6 +14,10 @@ import { RootState } from 'redux/store';
 
 export const Chat: FC = () => {
   const dispatch = useDispatch();
+
+  const onChange = (date: Date) => {
+    console.log(date.toString());
+  };
 
   const getSocketData = (message: string) => {
     dispatch(setMessage(message));
@@ -28,6 +34,10 @@ export const Chat: FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // dispatch()
+  }, []);
+
   const closeNotification = () => {
     dispatch(setMessage(undefined));
   };
@@ -35,16 +45,22 @@ export const Chat: FC = () => {
   return (
     <section>
       <Header />
-
-      <h1>Chat page name</h1>
-
       <div className="container">
         <div className={style.chatPage}>
-          <div className={style.chatPage__info}>Здесь календарь и часы</div>
+          <div className={style.chatPage__info}>
+            <DatePicker onChange={onChange} />
+          </div>
           <div className={style.chatPage__messageBox}>
             <MessageBox />
           </div>
-          <div className={style.chatPage__usersBox}>Здесь профили пользователей </div>
+          <div className={style.chatPage__usersBox}>
+            <Profile
+              avatar={iconUser}
+              email="test@test.ru"
+              name="Sasha"
+              phone="375 44 777 77 26"
+            />
+          </div>
         </div>
       </div>
       <div />

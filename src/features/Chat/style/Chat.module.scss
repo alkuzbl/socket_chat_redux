@@ -1,12 +1,13 @@
 .chatPage{
   display: flex;
   justify-content: space-between;
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 150px);
   height: 100%;
+  padding-top: 40px;
   &__info{
     flex-grow: 1;
     max-width: 300px;
-    border: 1px solid black;
+
   }
   &__messageBox{
     flex-grow: 2;
@@ -15,7 +16,9 @@
   }
   &__usersBox{
     flex-grow: 1;
-    border: 1px solid black;
     max-width: 300px;
+    height: calc(100vh - 250px);
+    overflow: hidden auto;
+    box-sizing: border-box;
   }
 }
